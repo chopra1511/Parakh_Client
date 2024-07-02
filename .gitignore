@@ -1,0 +1,86 @@
+# Dependency directories
+node_modules/
+.cache/
+
+# Build output
+/dist/
+/build/
+
+# Environment variables
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Editor directories and files
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Mac specific files
+.DS_Store
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Directory for tests
+__tests__/
+
+# Compiled Python files
+*.pyc
+
+# Compiled TypeScript files
+*.tsbuildinfo
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Optional npm package files
+**/.npmrc
+
+# Optional eslint configuration file
+.eslintcache
+
+# SonarQube folder for analysis
+.sonar/
+
+# Custom roles file
+custom_roles.yml
+
+# Build history for Webpack
+.last-build/
+
+# Webpack files
+*.webpack/
+
+# Webpack files
+*.log
+
+# Yarn 2
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# optional yarn file
+.yarnrc.yml
+
+# Linux files
+*.log
+npm-debug.log
+yarn-debug.log
+yarn-error.log
