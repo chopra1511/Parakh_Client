@@ -29,7 +29,7 @@ const dispatch = useDispatch()
 
 
   const router = createBrowserRouter([
-    { path: "/Parakh_client/", element: <LoginPage /> },
+    { path: "/Parakh_client", element: <LoginPage /> },
     { path: "/Parakh_client/home", element: <HomePage /> },
     { path: "/Parakh_client/contact-us", element: <ContactUS /> },
     { path: "/Parakh_client/account", element: <AccountPage /> },
