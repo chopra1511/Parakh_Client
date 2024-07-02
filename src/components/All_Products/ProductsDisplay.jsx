@@ -74,7 +74,7 @@ const ProductsDisplay = ({ categoryType, category, emoteImg, products }) => {
                   <Button
                     variant="contained"
                     size="large"
-                    onClick={() => navigate("/all-products")}
+                    onClick={() => navigate("/Parakh_client/all-products")}
                     className="button-shiny-effect"
                     sx={{
                       marginTop: 5,

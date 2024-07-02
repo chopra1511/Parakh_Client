@@ -29,19 +29,19 @@ const dispatch = useDispatch()
 
 
   const router = createBrowserRouter([
-    { path: "/", element: <LoginPage /> },
-    { path: "/home", element: <HomePage /> },
-    { path: "/contact-us", element: <ContactUS /> },
-    { path: "/account", element: <AccountPage /> },
-    { path: "/wishlist", element: <Wishlist /> },
-    { path: "/cart", element: <Cart /> },
-    { path: "/hot-deals", element: <AllHotDeals /> },
-    { path: "/most-loved", element: <AllMostLoved /> },
-    { path: "/all-products", element: <AllProducts /> },
-    { path: "/rings", element: <AllRings /> },
-    { path: "/earrings", element: <AllEarrings /> },
-    { path: "/necklaces", element: <AllNecklace /> },
-    { path: "/thankyou", element: <ThankYou /> },
+    { path: "/Parakh_client/", element: <LoginPage /> },
+    { path: "/Parakh_client/home", element: <HomePage /> },
+    { path: "/Parakh_client/contact-us", element: <ContactUS /> },
+    { path: "/Parakh_client/account", element: <AccountPage /> },
+    { path: "/Parakh_client/wishlist", element: <Wishlist /> },
+    { path: "/Parakh_client/cart", element: <Cart /> },
+    { path: "/Parakh_client/hot-deals", element: <AllHotDeals /> },
+    { path: "/Parakh_client/most-loved", element: <AllMostLoved /> },
+    { path: "/Parakh_client/all-products", element: <AllProducts /> },
+    { path: "/Parakh_client/rings", element: <AllRings /> },
+    { path: "/Parakh_client/earrings", element: <AllEarrings /> },
+    { path: "/Parakh_client/necklaces", element: <AllNecklace /> },
+    { path: "/Parakh_client/thankyou", element: <ThankYou /> },
   ]);
 
   return (

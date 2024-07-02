@@ -37,7 +37,7 @@ const AccountPage = () => {
 
   const handleLogout = () => {
     dispatch(userLogout())
-      .then(() => navigate("/"))
+      .then(() => navigate("/Parakh_client/"))
       .catch((error) => console.log(error));
     };
     

@@ -32,7 +32,7 @@ const Register = ({ setRegister }) => {
 
     dispatch(registerUser(userdetails))
       .unwrap()
-      .then(() => navigate("/home"))
+      .then(() => navigate("/Parakh_client/home"))
       .catch((error) => console.log(error));
   };
 

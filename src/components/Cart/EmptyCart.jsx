@@ -18,7 +18,7 @@ const EmptyCart = () => {
         <Button
           variant="contained"
           size="large"
-          onClick={() => navigate("/all-products")}
+          onClick={() => navigate("/Parakh_client/all-products")}
           className="button-shiny-effect"
           sx={{
             marginTop: 3,

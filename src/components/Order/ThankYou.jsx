@@ -9,7 +9,7 @@ const ThankYou = () => {
     <>
       <div className="h-screen flex justify-center items-center bg-[#ffdde1]">
         <div className="absolute top-0 left-0 p-5">
-          <IconButton onClick={() => navigate("/home")}>
+          <IconButton onClick={() => navigate("/Parakh_client/home")}>
             <i className="fi fi-rr-arrow-left text-black pt-1 px-2"></i>
           </IconButton>
         </div>

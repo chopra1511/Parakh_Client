@@ -22,7 +22,7 @@ const ProductSection = () => {
             </h1>
             <button
               onClick={() => {
-                navigate("/rings");
+                navigate("/Parakh_client/rings");
               }}
               className="mt-10 text-white border-b-2 hover:text-black hover:border-black hover:font-semibold"
             >
@@ -51,7 +51,7 @@ const ProductSection = () => {
             </h1>
             <button
               onClick={() => {
-                navigate("/earrings");
+                navigate("/Parakh_client/earrings");
               }}
               className="mt-10 text-white border-b-2 hover:text-black hover:border-black hover:font-semibold"
             >
@@ -70,7 +70,7 @@ const ProductSection = () => {
             </h1>
             <button
               onClick={() => {
-                navigate("/necklaces");
+                navigate("/Parakh_client/necklaces");
               }}
               className="mt-10 text-white border-b-2 hover:text-black hover:border-black hover:font-semibold"
             >

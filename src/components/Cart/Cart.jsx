@@ -116,7 +116,7 @@ const Cart = () => {
               type="submit"
               className="button-shiny-effect"
               onClick={() => {
-                navigate("/all-products");
+                navigate("/Parakh_client/all-products");
               }}
               sx={{
                 borderRadius: 10,

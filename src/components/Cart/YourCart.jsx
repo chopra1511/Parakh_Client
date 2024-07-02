@@ -123,7 +123,7 @@ const YourCart = ({ cart, billDetails }) => {
             await dispatch(clearUserCart());
 
             // Navigate to the thank you page
-            navigate("/thankyou");
+            navigate("/Parakh_client/thankyou");
 
             console.log("Payment Completed");
           } else {

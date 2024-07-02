@@ -79,7 +79,7 @@ const MostLoved = () => {
           type="submit"
           className="button-shiny-effect"
           onClick={() => {
-            navigate("/most-loved");
+            navigate("/Parakh_client/most-loved");
           }}
           sx={{
             borderRadius: 10,

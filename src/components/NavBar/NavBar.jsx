@@ -45,13 +45,13 @@ const NavBar = () => {
             <ul className="hidden sm:hidden md:hidden lg:flex gap-10 font-Poppins">
               <li
                 className="hover:text-[#ee9ca7] hover:cursor-pointer"
-                onClick={() => navigate("/home")}
+                onClick={() => navigate("/Parakh_client/home")}
               >
                 Home
               </li>
               <li
                 className="hover:text-[#ee9ca7] hover:cursor-pointer"
-                onClick={() => navigate("/all-products")}
+                onClick={() => navigate("/Parakh_client/all-products")}
               >
                 Store
               </li>
@@ -60,7 +60,7 @@ const NavBar = () => {
               </li>
               <li
                 className="hover:text-[#ee9ca7] hover:cursor-pointer"
-                onClick={() => navigate("/contact-us")}
+                onClick={() => navigate("/Parakh_client/contact-us")}
               >
                 Contact Us
               </li>
@@ -78,7 +78,7 @@ const NavBar = () => {
           <div className="lg:pr-36">
             <h1
               className="text-3xl font-musky hover:cursor-pointer"
-              onClick={() => navigate("/home")}
+              onClick={() => navigate("/Parakh_client/home")}
             >
               Parakh
             </h1>
@@ -91,19 +91,22 @@ const NavBar = () => {
               </li>
               <li
                 className="hidden lg:block"
-                onClick={() => navigate("/account")}
+                onClick={() => navigate("/Parakh_client/account")}
               >
                 <i className="fi fi-rr-circle-user text-black text-xl hover:text-[#ee9ca7] hover:cursor-pointer"></i>
               </li>
               <li
                 className="hidden lg:block"
-                onClick={() => navigate("/wishlist")}
+                onClick={() => navigate("/Parakh_client/wishlist")}
               >
                 <Badge badgeContent={items.length}>
                   <i className="fi fi-rr-heart text-black text-xl hover:text-[#ee9ca7] hover:cursor-pointer"></i>
                 </Badge>
               </li>
-              <li className="hidden lg:block" onClick={() => navigate("/cart")}>
+              <li
+                className="hidden lg:block"
+                onClick={() => navigate("/Parakh_client/cart")}
+              >
                 <Badge badgeContent={cart.length}>
                   <i className="fi fi-rr-shopping-cart text-black text-xl hover:text-[#ee9ca7] hover:cursor-pointer"></i>
                 </Badge>

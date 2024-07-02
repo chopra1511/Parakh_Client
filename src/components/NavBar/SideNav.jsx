@@ -7,17 +7,17 @@ import { useEffect } from "react";
 
 const SideNav = ({ setSideNav }) => {
   const navigate = useNavigate();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
 
   useEffect(() => {
-    dispatch(getUser())
-  },[dispatch])
+    dispatch(getUser());
+  }, [dispatch]);
 
   const handleLogout = () => {
     dispatch(userLogout())
       .unwrap()
-      .then(() => navigate("/"))
+      .then(() => navigate("/Parakh_client/"))
       .catch((error) => console.log(error));
   };
 
@@ -45,7 +45,7 @@ const SideNav = ({ setSideNav }) => {
         <ul className="flex flex-col gap-5">
           <li
             className="flex gap-5 items-center cursor-pointer"
-            onClick={() => navigate("/home")}
+            onClick={() => navigate("/Parakh_client/home")}
           >
             <i className="fi fi-rr-home text-black text-xl hover:text-[#ee9ca7]"></i>
             <h1 className="font-Poppins">Home</h1>
@@ -53,7 +53,7 @@ const SideNav = ({ setSideNav }) => {
 
           <li
             className="flex gap-5 items-center cursor-pointer"
-            onClick={() => navigate("/all-products")}
+            onClick={() => navigate("/Parakh_client/all-products")}
           >
             <i className="fi fi-rr-store-alt text-black text-xl hover:text-[#ee9ca7]"></i>
             <h1 className="font-Poppins">Store</h1>
@@ -64,12 +64,18 @@ const SideNav = ({ setSideNav }) => {
             <h1 className="font-Poppins">Collections</h1>
           </li>
 
-          <li className="flex gap-5 items-center cursor-pointer">
+          <li
+            className="flex gap-5 items-center cursor-pointer"
+            onClick={() => navigate("/Parakh_client/most-loved")}
+          >
             <i className="fi fi-rr-circle-heart text-black text-xl hover:text-[#ee9ca7]"></i>
             <h1 className="font-Poppins">Most Loved</h1>
           </li>
 
-          <li className="flex gap-5 items-center cursor-pointer">
+          <li
+            className="flex gap-5 items-center cursor-pointer"
+            onClick={() => navigate("/Parakh_client/hot-deals")}
+          >
             <i className="fi fi-rs-flame text-black text-xl hover:text-[#ee9ca7]"></i>
             <h1 className="font-Poppins">Hot Deals</h1>
           </li>
@@ -81,7 +87,7 @@ const SideNav = ({ setSideNav }) => {
 
           <li
             className="flex gap-5 items-center cursor-pointer"
-            onClick={() => navigate("/contact-us")}
+            onClick={() => navigate("/Parakh_client/contact-us")}
           >
             <i className="fi fi-rr-phone-rotary text-black text-xl hover:text-[#ee9ca7]"></i>
             <h1 className="font-Poppins">Contact Us</h1>
@@ -89,7 +95,7 @@ const SideNav = ({ setSideNav }) => {
 
           <li
             className="flex gap-5 items-center cursor-pointer"
-            onClick={() => navigate("/account")}
+            onClick={() => navigate("/Parakh_client/account")}
           >
             <i className="fi fi-rr-user text-black text-xl hover:text-[#ee9ca7]"></i>
             <h1 className="font-Poppins font-semibold">{user?.name}</h1>

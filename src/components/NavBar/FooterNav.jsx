@@ -36,14 +36,14 @@ const FooterNav = () => {
         <ul className="flex px-5 justify-between items-center">
           <li
             className="flex flex-col items-center"
-            onClick={() => navigate("/home")}
+            onClick={() => navigate("/Parakh_client/home")}
           >
             <i className="fi fi-rr-home text-black text-xl hover:text-[#ee9ca7] hover:cursor-pointer"></i>
             <h1 className="text-[12px] font-Poppins">Home</h1>
           </li>
           <li
             className="flex flex-col items-center"
-            onClick={() => navigate("/wishlist")}
+            onClick={() => navigate("/Parakh_client/wishlist")}
           >
             <Badge badgeContent={items.length}>
               <i className="fi fi-rr-heart text-black text-xl hover:text-[#ee9ca7] hover:cursor-pointer"></i>
@@ -56,7 +56,7 @@ const FooterNav = () => {
           </li>
           <li
             className="flex flex-col items-center"
-            onClick={() => navigate("/account")}
+            onClick={() => navigate("/Parakh_client/account")}
           >
             <i className="fi fi-rr-user text-black text-xl hover:text-[#ee9ca7] hover:cursor-pointer"></i>
             <h1 className="text-[12px] font-Poppins">Account</h1>
@@ -64,7 +64,7 @@ const FooterNav = () => {
 
           <li
             className="flex flex-col items-center"
-            onClick={() => navigate("/cart")}
+            onClick={() => navigate("/Parakh_client/cart")}
           >
             <Badge badgeContent={cart.length}>
               <i className="fi fi-rr-shopping-cart text-black text-xl hover:text-[#ee9ca7] hover:cursor-pointer"></i>

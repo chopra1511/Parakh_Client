@@ -82,7 +82,7 @@ const HotDeals = () => {
           type="submit"
           className="button-shiny-effect"
           onClick={() => {
-            navigate("/hot-deals");
+            navigate("/Parakh_client/hot-deals");
           }}
           sx={{
             borderRadius: 10,
