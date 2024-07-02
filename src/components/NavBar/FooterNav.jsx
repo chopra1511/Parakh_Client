@@ -10,7 +10,7 @@ const FooterNav = () => {
     const navigate = useNavigate();
 
   useEffect(() => {
-    if (location.pathname === "/home") {
+    if (location.pathname === "/Parakh_client/home") {
       const handleScroll = () => {
         const currentScrollPos = window.pageYOffset;
         const isVisible = currentScrollPos > 350; // Adjust this value as needed

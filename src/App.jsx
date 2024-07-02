@@ -22,7 +22,7 @@ function App() {
 const dispatch = useDispatch()
 
   useEffect(() => {
-    if (location.pathname !== "/") {
+    if (location.pathname !== "/Parakh_client") {
       dispatch(getAllProduct());
     }
   },[])

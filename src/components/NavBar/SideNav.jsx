@@ -17,7 +17,7 @@ const SideNav = ({ setSideNav }) => {
   const handleLogout = () => {
     dispatch(userLogout())
       .unwrap()
-      .then(() => navigate("/Parakh_client/"))
+      .then(() => navigate("/Parakh_client"))
       .catch((error) => console.log(error));
   };
 

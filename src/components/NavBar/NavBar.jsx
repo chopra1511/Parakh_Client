@@ -11,7 +11,7 @@ const NavBar = () => {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname === "/home") {
+    if (location.pathname === "/Parakh_client/home") {
       const handleScroll = () => {
         if (window.scrollY > 350) {
           setShowNav(true);
