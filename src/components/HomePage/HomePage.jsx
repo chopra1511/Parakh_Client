@@ -10,11 +10,32 @@ import InfoSection from "./InfoSection";
 import MostLoved from "./MostLoved";
 import ProductSection from "./ProductSection";
 import Questions from "./Questions";
+import { useDispatch, useSelector } from "react-redux";
+import { getUser } from "../../store/reducers/userSlice";
+import { getUserAddresses } from "../../store/reducers/addressSlice";
+import { getUserCart } from "../../store/reducers/cartSlice";
 
 const HomePage = () => {
+  const dispatch = useDispatch();
+
+  const user = useSelector((state) => state.user.user);
+  const addresses = useSelector((state) => state.address.addresses);
+  const cart = useSelector((state) => state.cart.items);
+
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+    if (!user) {
+      dispatch(getUser());
+    }
+    if (!addresses || addresses.length === 0) {
+      dispatch(getUserAddresses());
+    }
+    if (!cart || cart.length === 0) {
+      dispatch(getUserCart());
+    }
+  }, [dispatch, user, addresses, cart]);
+
+
   return (
     <>
       <div className="home bg-[#f4f4f4]">

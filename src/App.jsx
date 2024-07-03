@@ -1,47 +1,145 @@
 import { createBrowserRouter } from "react-router-dom";
 import "./index.css";
-import { RouterProvider } from "react-router";
-import LoginPage from "./components/HomePage/LoginPage";
-import AllHotDeals from "./components/All_Products/AllHotDeals";
-import AllMostLoved from "./components/All_Products/AllMostLoved";
-import AllRings from "./components/All_Products/AllRings";
-import AllEarrings from "./components/All_Products/AllEarrings";
-import AllNecklace from "./components/All_Products/AllNecklace";
-import AllProducts from "./components/All_Products/AllProducts";
-import ContactUS from "./components/ContactUs/ContactUS";
-import Cart from "./components/Cart/Cart";
-import HomePage from "./components/HomePage/HomePage";
-import AccountPage from "./components/Account/AccountPage";
-import Wishlist from "./components/Wishlist/Wishlist";
-import { useEffect } from "react";
+import loading from "/assets/loading.gif";
+import { Suspense, lazy, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getAllProduct } from "./store/reducers/productSlice";
-import ThankYou from "./components/Order/ThankYou";
+import { RouterProvider } from "react-router";
+
+const LoginPage = lazy(() => import("./components/HomePage/LoginPage"));
+const AllHotDeals = lazy(() => import("./components/All_Products/AllHotDeals"));
+const AllMostLoved = lazy(() =>
+  import("./components/All_Products/AllMostLoved")
+);
+const AllRings = lazy(() => import("./components/All_Products/AllRings"));
+const AllEarrings = lazy(() => import("./components/All_Products/AllEarrings"));
+const AllNecklace = lazy(() => import("./components/All_Products/AllNecklace"));
+const AllProducts = lazy(() => import("./components/All_Products/AllProducts"));
+const ContactUS = lazy(() => import("./components/ContactUs/ContactUS"));
+const Cart = lazy(() => import("./components/Cart/Cart"));
+const HomePage = lazy(() => import("./components/HomePage/HomePage"));
+const AccountPage = lazy(() => import("./components/Account/AccountPage"));
+const Wishlist = lazy(() => import("./components/Wishlist/Wishlist"));
+const ThankYou = lazy(() => import("./components/Order/ThankYou"));
 
 function App() {
-const dispatch = useDispatch()
-
+  const dispatch = useDispatch();
+  
   useEffect(() => {
-    if (location.pathname !== "/Parakh_client") {
-      dispatch(getAllProduct());
-    }
-  },[])
+    dispatch(getAllProduct());
+  }, [dispatch]);
 
+  const loadingPic = (
+    <div className="h-screen flex flex-col justify-center items-center">
+      <img src={loading} alt="" className="w-24" />
+    </div>
+  );
 
   const router = createBrowserRouter([
-    { path: "/Parakh_client", element: <LoginPage /> },
-    { path: "/Parakh_client/home", element: <HomePage /> },
-    { path: "/Parakh_client/contact-us", element: <ContactUS /> },
-    { path: "/Parakh_client/account", element: <AccountPage /> },
-    { path: "/Parakh_client/wishlist", element: <Wishlist /> },
-    { path: "/Parakh_client/cart", element: <Cart /> },
-    { path: "/Parakh_client/hot-deals", element: <AllHotDeals /> },
-    { path: "/Parakh_client/most-loved", element: <AllMostLoved /> },
-    { path: "/Parakh_client/all-products", element: <AllProducts /> },
-    { path: "/Parakh_client/rings", element: <AllRings /> },
-    { path: "/Parakh_client/earrings", element: <AllEarrings /> },
-    { path: "/Parakh_client/necklaces", element: <AllNecklace /> },
-    { path: "/Parakh_client/thankyou", element: <ThankYou /> },
+    {
+      path: "/Parakh_client",
+      element: (
+        <Suspense fallback={loadingPic}>
+          <LoginPage />
+        </Suspense>
+      ),
+    },
+    {
+      path: "/Parakh_client/home",
+      element: (
+        <Suspense fallback={loadingPic}>
+          <HomePage />
+        </Suspense>
+      ),
+    },
+    {
+      path: "/Parakh_client/contact-us",
+      element: (
+        <Suspense fallback={loadingPic}>
+          <ContactUS />
+        </Suspense>
+      ),
+    },
+    {
+      path: "/Parakh_client/account",
+      element: (
+        <Suspense fallback={loadingPic}>
+          <AccountPage />
+        </Suspense>
+      ),
+    },
+    {
+      path: "/Parakh_client/wishlist",
+      element: (
+        <Suspense fallback={loadingPic}>
+          <Wishlist />
+        </Suspense>
+      ),
+    },
+    {
+      path: "/Parakh_client/cart",
+      element: (
+        <Suspense fallback={loadingPic}>
+          <Cart />
+        </Suspense>
+      ),
+    },
+    {
+      path: "/Parakh_client/hot-deals",
+      element: (
+        <Suspense fallback={loadingPic}>
+          <AllHotDeals />
+        </Suspense>
+      ),
+    },
+    {
+      path: "/Parakh_client/most-loved",
+      element: (
+        <Suspense fallback={loadingPic}>
+          <AllMostLoved />
+        </Suspense>
+      ),
+    },
+    {
+      path: "/Parakh_client/all-products",
+      element: (
+        <Suspense fallback={loadingPic}>
+          <AllProducts />{" "}
+        </Suspense>
+      ),
+    },
+    {
+      path: "/Parakh_client/rings",
+      element: (
+        <Suspense fallback={loadingPic}>
+          <AllRings />
+        </Suspense>
+      ),
+    },
+    {
+      path: "/Parakh_client/earrings",
+      element: (
+        <Suspense fallback={loadingPic}>
+          <AllEarrings />
+        </Suspense>
+      ),
+    },
+    {
+      path: "/Parakh_client/necklaces",
+      element: (
+        <Suspense fallback={loadingPic}>
+          <AllNecklace />
+        </Suspense>
+      ),
+    },
+    {
+      path: "/Parakh_client/thankyou",
+      element: (
+        <Suspense fallback={loadingPic}>
+          <ThankYou />
+        </Suspense>
+      ),
+    },
   ]);
 
   return (

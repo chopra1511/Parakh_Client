@@ -3,33 +3,18 @@ import "@flaticon/flaticon-uicons/css/all/all.css";
 import NavBar from "../NavBar/NavBar";
 import FooterNav from "../NavBar/FooterNav";
 import { Button, IconButton } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addToCart, getUserCart } from "../../store/reducers/cartSlice";
 import { useNavigate } from "react-router";
-import { addToWishlist, getUserWishlist, removeFromWishlist } from "../../store/reducers/productSlice";
+import { addToWishlist } from "../../store/reducers/productSlice";
 
 const ProductsDisplay = ({ categoryType, category, emoteImg, products }) => {
-  const [isInWishlist, setIsInWishlist] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { wishlist } = useSelector((state) => state.products);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-    // useEffect(() => {
-    //   dispatch(getUserWishlist());
-    // }, [dispatch]);
-  
-  // useEffect(() => {
-  //   products.map((product) => {
-  //     if (wishlist.some((item) => item.product === product._id)) {
-  //       setIsInWishlist(true);
-  //     } else {
-  //       setIsInWishlist(false);
-  //     }
-  //   })
-  //   }, [wishlist, products]);
 
   const addCartHandler = (id) => {
     products.map((product) => {
@@ -45,13 +30,6 @@ const ProductsDisplay = ({ categoryType, category, emoteImg, products }) => {
     });
   };
 
-  const wishlistHandler = (id) => {
-    if (isInWishlist) {
-      dispatch(removeFromWishlist(id));
-    } else {
-      dispatch(addToWishlist(id));
-    }
-  };
 
   return (
     <div className="bg-[#f4f4f4]">
@@ -122,10 +100,10 @@ const ProductsDisplay = ({ categoryType, category, emoteImg, products }) => {
                   <IconButton onClick={() => addCartHandler(product._id)}>
                     <i className="fi fi-sr-shopping-cart-add text-white text-xl pt-1 px-2 rounded-full"></i>
                   </IconButton>
-                  <IconButton onClick={() => wishlistHandler(product._id)}>
+                  <IconButton >
                     <i
                       className={`fi fi-sr-heart  text-xl pt-1 px-2 rounded-full ${
-                        isInWishlist ? "text-[#FF0000]" : "text-white"
+                       "text-white"
                       }`}
                     ></i>
                   </IconButton>

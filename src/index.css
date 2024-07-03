@@ -22,7 +22,7 @@ body {
 @font-face {
   font-family: "Musky";
   src: local("Musky"),
-    url("../src/assets/fonts/Musky.otf") format("opentype");
+    url("/assets/fonts/Musky.otf") format("opentype");
 }
 
 

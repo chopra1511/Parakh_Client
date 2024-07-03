@@ -12,7 +12,6 @@ import {
   increaseCartItem,
 } from "../../store/reducers/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
 import { load } from "@cashfreepayments/cashfree-js";
 import {
   getUserAddresses,
@@ -21,18 +20,16 @@ import {
 import { createOrder, paymentVerify } from "../../store/reducers/checkoutSlice";
 import { useNavigate } from "react-router";
 
+let cashfree;
+
 const YourCart = ({ cart, billDetails }) => {
   const [showAllAddresses, setShowAllAddresses] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedAddressIndex, setSelectedAddressIndex] = useState(0);
 
   const { addresses } = useSelector((state) => state.address);
-  // const { order, orderStatus } = useSelector((state) => state.order);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getUserAddresses());
-  }, [dispatch]);
 
   const deleteAddressHandler = (id) => {
     dispatch(removeUserAddress(id))
@@ -88,51 +85,44 @@ const YourCart = ({ cart, billDetails }) => {
       });
   };
 
-  let cashfree;
-  var initializeSDK = async function () {
-    cashfree = await load({
-      mode: "sandbox",
-    });
-  };
-  initializeSDK();
+  useEffect(() => {
+    const initializeSDK = async () => {
+      cashfree = await load({ mode: "sandbox" });
+    };
+    initializeSDK();
+  }, []);
 
   const handlePayment = async (e) => {
     e.preventDefault();
-
     try {
-
-      // Dispatch createOrder action to initiate the order
+      // Initiate the order
       const createOrderResult = await dispatch(createOrder()).unwrap();
 
-      let checkoutOptions = {
+      // Set checkout options
+      const checkoutOptions = {
         paymentSessionId: createOrderResult.payment_session_id,
         redirectTarget: "_modal",
       };
 
-      cashfree
-        .checkout(checkoutOptions)
-        .then(async () => {
-          console.log("Payment Initiated");
-          // Dispatch paymentVerify action to verify payment
-          const paymentVerifyResult = await dispatch(
-            paymentVerify(createOrderResult.order_id)
-          ).unwrap();
-          // Check if the payment was successful
-          if (paymentVerifyResult.payment_status === "SUCCESS") {
-            // Dispatch clearUserCart action to clear the user's cart
-            await dispatch(clearUserCart());
+      // Initiate the payment process
+      await cashfree.checkout(checkoutOptions);
+      console.log("Payment Initiated");
 
-            // Navigate to the thank you page
-            navigate("/Parakh_client/thankyou");
+      // Verify the payment
+      const paymentVerifyResult = await dispatch(
+        paymentVerify(createOrderResult.order_id)
+      ).unwrap();
 
-            console.log("Payment Completed");
-          } else {
-            console.log("Payment verification failed:", paymentVerifyResult);
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      if (paymentVerifyResult.payment_status === "SUCCESS") {
+        // Clear the user's cart
+        await dispatch(clearUserCart());
+
+        // Navigate to the thank you page
+        navigate("/Parakh_client/thankyou");
+        console.log("Payment Completed");
+      } else {
+        console.log("Payment verification failed:", paymentVerifyResult);
+      }
     } catch (error) {
       console.log(error);
     }

@@ -40,9 +40,9 @@ export const removeUserAddress = createAsyncThunk(
               credentials: "include",
             });
             const data = await response.json();
-            console.log(data.address.addresses.addressList);
+            console.log(data.addresses.addressList);
             if (response.ok) {
-                return data.address.addresses.addressList;
+                return data.addresses.addressList;
             } else {
                 return rejectWithValue(data.message);
             }

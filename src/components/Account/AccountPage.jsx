@@ -28,12 +28,13 @@ const AccountPage = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
-
-  useEffect(() => {
-    dispatch(getUserAddresses());
-    dispatch(getUser());
-  }, [dispatch]);
+    if (!user) {
+      dispatch(getUser());
+    }
+    if (!addresses || addresses.length === 0) {
+      dispatch(getUserAddresses());
+    }
+  }, [dispatch, user, addresses]);
 
   const handleLogout = () => {
     dispatch(userLogout())
@@ -112,13 +113,13 @@ const AccountPage = () => {
                     <div className="flex justify-between">
                       <h1 className="text-sm md:text-md font-Poppins">Name</h1>
                       <h1 className="text-sm md:text-md font-Poppins font-semibold">
-                        {user?.name}
+                        {user?.user.name}
                       </h1>
                     </div>
                     <div className="flex justify-between mt-2">
                       <h1 className="text-sm md:text-md font-Poppins">Email</h1>
                       <h1 className="text-sm md:text-md font-Poppins font-semibold">
-                        {user?.email}
+                        {user?.user.email}
                       </h1>
                     </div>
                     <div className="flex justify-between mt-2">
@@ -126,7 +127,7 @@ const AccountPage = () => {
                         Contact
                       </h1>
                       <h1 className="text-sm md:text-md font-Poppins font-semibold">
-                        {user?.contact}
+                        {user?.user.contact}
                       </h1>
                     </div>
                   </div>

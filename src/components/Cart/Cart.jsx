@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import NavBar from "../NavBar/NavBar";
-import empty from "/assets/empty.gif";
 import Button from "@mui/material/Button";
-import diamond from "/assets/diamond.png";
 import { useNavigate } from "react-router";
 import { IconButton } from "@mui/material";
 import EmptyCart from "./EmptyCart";
@@ -10,29 +8,26 @@ import FooterNav from "../NavBar/FooterNav";
 import Footer from "../HomePage/Footer";
 import YourCart from "./YourCart";
 import { useDispatch, useSelector } from "react-redux";
-// import { addItemToCart } from "../../store/reducers/cartSlice";
+import { getUserAddresses } from "../../store/reducers/addressSlice";
 import { getUserCart } from "../../store/reducers/cartSlice";
 
 const Cart = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const { cart, billDetails } = useSelector((state) => state.cart);
   const { products } = useSelector((state) => state.products);
-  const navigate = useNavigate();
+  const addresses = useSelector((state) => state.address.addresses);
+
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
-
-  useEffect(() => {
-    dispatch(getUserCart());
-  }, [dispatch]);
-
-  // const cartHandler = (id) => {
-  //   products.map((product) => {
-  //     if (product.id === id) {
-  //       dispatch(addItemToCart(product));
-  //     }
-  //   });
-  // };
+    if (!addresses || addresses.length === 0) {
+      dispatch(getUserAddresses());
+    }
+    if (!cart || cart.length === 0) {
+      dispatch(getUserCart());
+    }
+  }, [dispatch, cart, addresses]);
 
   const wishlistHandler = (id) => {
     console.log(id);
