@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from "react-router";
 import Badge from "@mui/material/Badge";
 import { useSelector } from "react-redux";
 import SideNav from "./SideNav";
+import { NavLink } from "react-router-dom";
 
 const NavBar = () => {
   const [showNav, setShowNav] = useState(false);
@@ -29,9 +30,8 @@ const NavBar = () => {
     }
   }, [location.pathname]);
 
-  const { products } = useSelector((state) => state.products);
+  const { wishlist } = useSelector((state) => state.products);
   const { cart } = useSelector((state) => state.cart);
-  const items = products.filter((item) => item.wishlist === true);
 
   return (
     <>
@@ -40,33 +40,60 @@ const NavBar = () => {
           showNav ? "translate-y-0" : "-translate-y-full"
         }`}
       >
-        <nav className="flex justify-between drop-shadow-xl bg-white items-center px-5 lg:px-10 py-3">
+        <nav className="flex justify-between drop-shadow-xl bg-white items-center px-5 xl:px-10 py-3">
           <div>
-            <ul className="hidden sm:hidden md:hidden lg:flex gap-10 font-Poppins">
-              <li
-                className="hover:text-[#ee9ca7] hover:cursor-pointer"
-                onClick={() => navigate("/Parakh_client/home")}
-              >
-                Home
+            <ul className="hidden sm:hidden md:hidden lg:hidden xl:flex gap-10 font-Poppins">
+              <li>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-[#ee9ca7]"
+                      : "hover:text-[#ee9ca7] hover:cursor-pointer"
+                  }
+                  to={"/Parakh_client/home"}
+                >
+                  Home
+                </NavLink>
               </li>
-              <li
-                className="hover:text-[#ee9ca7] hover:cursor-pointer"
-                onClick={() => navigate("/Parakh_client/all-products")}
-              >
-                Store
+              <li>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-[#ee9ca7]"
+                      : "hover:text-[#ee9ca7] hover:cursor-pointer"
+                  }
+                  to={"/Parakh_client/all-products"}
+                >
+                  Store
+                </NavLink>
               </li>
-              <li className="hover:text-[#ee9ca7] hover:cursor-pointer">
-                About Us
+              <li>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-[#ee9ca7]"
+                      : "hover:text-[#ee9ca7] hover:cursor-pointer"
+                  }
+                  to={"/Parakh_client/collections"}
+                >
+                  Collections
+                </NavLink>
               </li>
-              <li
-                className="hover:text-[#ee9ca7] hover:cursor-pointer"
-                onClick={() => navigate("/Parakh_client/contact-us")}
-              >
-                Contact Us
+              <li>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-[#ee9ca7]"
+                      : "hover:text-[#ee9ca7] hover:cursor-pointer"
+                  }
+                  to={"/Parakh_client/contact-us"}
+                >
+                  Contact Us
+                </NavLink>
               </li>
             </ul>
             <div
-              className="lg:hidden"
+              className="xl:hidden"
               onClick={() => {
                 setSideNav(true);
               }}
@@ -75,7 +102,7 @@ const NavBar = () => {
             </div>
           </div>
 
-          <div className="lg:pr-36">
+          <div className="xl:pr-40">
             <h1
               className="text-3xl font-musky hover:cursor-pointer"
               onClick={() => navigate("/Parakh_client/home")}
@@ -87,29 +114,49 @@ const NavBar = () => {
           <div>
             <ul className="flex gap-10 items-center">
               <li>
-                <i className="fi fi-rr-search text-black text-xl hover:text-[#ee9ca7] hover:cursor-pointer"></i>
+                <NavLink>
+                  <i className="fi fi-rr-search text-xl"></i>
+                </NavLink>
               </li>
-              <li
-                className="hidden lg:block"
-                onClick={() => navigate("/Parakh_client/account")}
-              >
-                <i className="fi fi-rr-circle-user text-black text-xl hover:text-[#ee9ca7] hover:cursor-pointer"></i>
+              <li className="hidden xl:block">
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-[#ee9ca7]"
+                      : "hover:text-[#ee9ca7] hover:cursor-pointer"
+                  }
+                  to={"/Parakh_client/account"}
+                >
+                  <i className="fi fi-rr-circle-user text-xl"></i>
+                </NavLink>
               </li>
-              <li
-                className="hidden lg:block"
-                onClick={() => navigate("/Parakh_client/wishlist")}
-              >
-                <Badge badgeContent={items.length}>
-                  <i className="fi fi-rr-heart text-black text-xl hover:text-[#ee9ca7] hover:cursor-pointer"></i>
-                </Badge>
+              <li className="hidden xl:block">
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-[#ee9ca7]"
+                      : "hover:text-[#ee9ca7] hover:cursor-pointer"
+                  }
+                  to={"/Parakh_client/wishlist"}
+                >
+                  <Badge badgeContent={wishlist.length}>
+                    <i className="fi fi-rr-heart text-xl"></i>
+                  </Badge>
+                </NavLink>
               </li>
-              <li
-                className="hidden lg:block"
-                onClick={() => navigate("/Parakh_client/cart")}
-              >
-                <Badge badgeContent={cart.length}>
-                  <i className="fi fi-rr-shopping-cart text-black text-xl hover:text-[#ee9ca7] hover:cursor-pointer"></i>
-                </Badge>
+              <li className="hidden xl:block">
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-[#ee9ca7]"
+                      : "hover:text-[#ee9ca7] hover:cursor-pointer"
+                  }
+                  to={"/Parakh_client/cart"}
+                >
+                  <Badge badgeContent={cart.length}>
+                    <i className="fi fi-rr-shopping-cart text-xl"></i>
+                  </Badge>
+                </NavLink>
               </li>
             </ul>
           </div>

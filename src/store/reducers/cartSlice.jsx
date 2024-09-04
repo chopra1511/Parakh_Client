@@ -5,12 +5,12 @@ const base_URL = "https://parakh-api.onrender.com";
 
 export const addToCart = createAsyncThunk(
   "cart/addToCart",
-  async (product, { rejectWithValue }) => {
+  async ({ product, quantity }, { rejectWithValue }) => {
     try {
       const response = await fetch(`${base_URL}/add-to-cart`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ product }),
+        body: JSON.stringify({ product, quantity }),
         credentials: "include",
       });
 
@@ -127,7 +127,7 @@ export const clearUserCart = createAsyncThunk(
 
       const data = await response.json();
       if (response.ok) {
-        return data.cart.items;
+        return data.cart;
       } else {
         return rejectWithValue(data.message);
       }
@@ -142,7 +142,7 @@ const cartSlice = createSlice({
   initialState: {
     cart: [],
     billDetails: {
-      delivery: 50,
+      delivery: 80,
       cartTotal: 0,
       subTotal: 0,
       discount: 0,
@@ -197,17 +197,17 @@ const cartSlice = createSlice({
         // Recalculate bill details
         state.billDetails.cartTotal = state.cart
           .map((item) => item.totalPrice + item.totalDiscount)
-          .reduce((a, b) => a + b,0);
+          .reduce((a, b) => a + b, 0);
         state.billDetails.discount = state.cart
           .map((item) => item.totalDiscount)
-          .reduce((a, b) => a + b,0);
+          .reduce((a, b) => a + b, 0);
         state.billDetails.subTotal =
           state.billDetails.cartTotal - state.billDetails.discount;
+        state.billDetails.delivery = state.billDetails.subTotal >= 999 ? 0 : 80;
         state.billDetails.toPay =
           state.billDetails.subTotal + state.billDetails.delivery;
       });
   },
-  
 });
 
 

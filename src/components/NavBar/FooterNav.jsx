@@ -2,13 +2,16 @@
 import React, { useState, useEffect } from "react";
 import Badge from "@mui/material/Badge";
 import { useLocation, useNavigate } from "react-router";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserCart } from "../../store/reducers/cartSlice";
+import { getUserWishlist } from "../../store/reducers/productSlice";
+import { NavLink } from "react-router-dom";
 
 const FooterNav = () => {
   const [isVisible, setIsVisible] = useState(false);
-    const location = useLocation();
-    const navigate = useNavigate();
-
+  const location = useLocation();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   useEffect(() => {
     if (location.pathname === "/Parakh_client/home") {
       const handleScroll = () => {
@@ -26,51 +29,95 @@ const FooterNav = () => {
     }
   }, [location.pathname]);
 
-  const { products } = useSelector((state) => state.products);
+  const { wishlist } = useSelector((state) => state.products);
   const { cart } = useSelector((state) => state.cart);
-  const items = products.filter((item) => item.wishlist === true);
+
+  useEffect(() => {
+    if (!cart || cart.length === 0) {
+      dispatch(getUserCart());
+    }
+    if (!wishlist || wishlist.length === 0) {
+      dispatch(getUserWishlist());
+    }
+  }, [dispatch, cart, wishlist]);
 
   return (
     <div className={`footer-nav ${isVisible ? "visible" : ""}`}>
-      <nav className="bg-white items-center lg:px-10 py-3">
+      <nav className="bg-white items-center xl:px-10 py-3">
         <ul className="flex px-5 justify-between items-center">
-          <li
-            className="flex flex-col items-center"
-            onClick={() => navigate("/Parakh_client/home")}
+          <NavLink
+            className={({ isActive }) =>
+              isActive
+                ? "text-[#ee9ca7]"
+                : "hover:text-[#ee9ca7] hover:cursor-pointer"
+            }
+            to={"/Parakh_client/home"}
           >
-            <i className="fi fi-rr-home text-black text-xl hover:text-[#ee9ca7] hover:cursor-pointer"></i>
-            <h1 className="text-[12px] font-Poppins">Home</h1>
-          </li>
-          <li
-            className="flex flex-col items-center"
-            onClick={() => navigate("/Parakh_client/wishlist")}
-          >
-            <Badge badgeContent={items.length}>
-              <i className="fi fi-rr-heart text-black text-xl hover:text-[#ee9ca7] hover:cursor-pointer"></i>
-            </Badge>
-            <h1 className="text-[12px] font-Poppins">Wishlist</h1>
-          </li>
-          <li className="flex flex-col items-center">
-            <i className="fi fi-rr-apps text-black text-xl hover:text-[#ee9ca7] hover:cursor-pointer"></i>
-            <h1 className="text-[12px] font-Poppins">Collections</h1>
-          </li>
-          <li
-            className="flex flex-col items-center"
-            onClick={() => navigate("/Parakh_client/account")}
-          >
-            <i className="fi fi-rr-user text-black text-xl hover:text-[#ee9ca7] hover:cursor-pointer"></i>
-            <h1 className="text-[12px] font-Poppins">Account</h1>
-          </li>
+            <li className="flex flex-col items-center">
+              <i className="fi fi-rr-home text-xl"></i>
+              <h1 className="text-[12px] font-Poppins">Home</h1>
+            </li>
+          </NavLink>
 
-          <li
-            className="flex flex-col items-center"
-            onClick={() => navigate("/Parakh_client/cart")}
+          <NavLink
+            className={({ isActive }) =>
+              isActive
+                ? "text-[#ee9ca7]"
+                : "hover:text-[#ee9ca7] hover:cursor-pointer"
+            }
+            to={"/Parakh_client/wishlist"}
           >
-            <Badge badgeContent={cart.length}>
-              <i className="fi fi-rr-shopping-cart text-black text-xl hover:text-[#ee9ca7] hover:cursor-pointer"></i>
-            </Badge>
-            <h1 className="text-[12px] font-Poppins">Cart</h1>
-          </li>
+            <li className="flex flex-col items-center">
+              <Badge badgeContent={wishlist.length}>
+                <i className="fi fi-rr-heart text-xl"></i>
+              </Badge>
+              <h1 className="text-[12px] font-Poppins">Wishlist</h1>
+            </li>
+          </NavLink>
+
+          <NavLink
+            className={({ isActive }) =>
+              isActive
+                ? "text-[#ee9ca7]"
+                : "hover:text-[#ee9ca7] hover:cursor-pointer"
+            }
+            to={"/Parakh_client/collections"}
+          >
+            <li className="flex flex-col items-center">
+              <i className="fi fi-rr-apps text-xl"></i>
+              <h1 className="text-[12px] font-Poppins">Collections</h1>
+            </li>
+          </NavLink>
+
+          <NavLink
+            className={({ isActive }) =>
+              isActive
+                ? "text-[#ee9ca7]"
+                : "hover:text-[#ee9ca7] hover:cursor-pointer"
+            }
+            to={"/Parakh_client/account"}
+          >
+            <li className="flex flex-col items-center">
+              <i className="fi fi-rr-user text-xl"></i>
+              <h1 className="text-[12px] font-Poppins">Account</h1>
+            </li>
+          </NavLink>
+
+          <NavLink
+            className={({ isActive }) =>
+              isActive
+                ? "text-[#ee9ca7]"
+                : "hover:text-[#ee9ca7] hover:cursor-pointer"
+            }
+            to={"/Parakh_client/cart"}
+          >
+            <li className="flex flex-col items-center">
+              <Badge badgeContent={cart.length}>
+                <i className="fi fi-rr-shopping-cart text-xl"></i>
+              </Badge>
+              <h1 className="text-[12px] font-Poppins">Cart</h1>
+            </li>
+          </NavLink>
         </ul>
       </nav>
     </div>

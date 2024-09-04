@@ -24,6 +24,30 @@ export const getAllProduct = createAsyncThunk(
   }
 );
 
+export const getProductDetails = createAsyncThunk(
+  "product-details",
+  async (productId, { rejectWithValue }) => {
+    try {
+      const response = await fetch(`${base_URL}/product-details`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ productId }),
+        credentials: "include",
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        return data.data;
+      } else {
+        return rejectWithValue(data.message);
+      }
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 export const addToWishlist = createAsyncThunk(
   "wishlist/addToWishlist",
   async (productId, { rejectWithValue }) => {
@@ -38,7 +62,7 @@ export const addToWishlist = createAsyncThunk(
       const data = await response.json();
 
       if (response.ok) {
-        return data;
+        return data.wishlist.wishlist;
       } else {
         return rejectWithValue(data.message);
       }
@@ -62,7 +86,7 @@ export const removeFromWishlist = createAsyncThunk(
       const data = await response.json();
 
       if (response.ok) {
-        return data;
+        return data.wishlist.wishlist;
       } else {
         return rejectWithValue(data.message);
       }
@@ -84,7 +108,7 @@ export const getUserWishlist = createAsyncThunk(
       const data = await response.json();
 
       if (response.ok) {
-        return data;
+        return data.wishlist[0].wishlist;
       } else {
         return rejectWithValue(data.message);
       }
@@ -99,6 +123,7 @@ const productSlice = createSlice({
   initialState: {
     products: [],
     wishlist: [],
+    productDetails: null,
     isLoading: false,
     isError: false,
     errorMessage: null,
@@ -123,9 +148,28 @@ const productSlice = createSlice({
         state.errorMessage = action.payload || "Failed to fetch addresses";
       })
 
+      //getProductDetails
+      .addCase(getProductDetails.pending, (state) => {
+        state.isLoading = true;
+        state.isError = false;
+        state.errorMessage = null;
+      })
+      .addCase(getProductDetails.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.productDetails = action.payload;
+        state.isError = false;
+        state.errorMessage = null;
+      })
+      .addCase(getProductDetails.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.errorMessage =
+          action.payload || "Failed to fetch product details";
+      })
+
       //addToWishlist
       .addCase(addToWishlist.fulfilled, (state, action) => {
-        state.wishlist.push(action.payload);
+        state.wishlist = action.payload;
       })
       .addCase(addToWishlist.rejected, (state, action) => {
         state.errorMessage = action.payload;
@@ -133,7 +177,7 @@ const productSlice = createSlice({
 
       //removeFromWishlist
       .addCase(removeFromWishlist.fulfilled, (state, action) => {
-       state.wishlist = action.payload;
+        state.wishlist = action.payload;
       })
       .addCase(removeFromWishlist.rejected, (state, action) => {
         state.errorMessage = action.payload;

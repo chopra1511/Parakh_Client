@@ -1,10 +1,13 @@
 
 const Questions = () => {
   return (
-    <div className="flex justify-center my-40">
+    <div className="flex justify-center mt-40 pb-40 bg-gradient-to-b from-[#ffffff] to-[#f4f4f4]">
       <section className="flex flex-col justify-center items-center">
-        <h1 className="sm:mb-20 text-3xl sm:text-5xl font-Poppins font-semibold">
-          Common Questions
+        <h1 className="text-xl w-fit md:text-2xl font-Pacifico text-[#f2707f]">
+          Common
+        </h1>
+        <h1 className="text-2xl w-fit md:text-3xl font-Lemon font-medium">
+          Questions
         </h1>
         <div className="sm:w-2/3 px-10 sm:px-20">
           <section className="border-b-2 py-20 hover:translate-x-6 hover:cursor-pointer">

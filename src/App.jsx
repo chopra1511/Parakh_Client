@@ -1,11 +1,18 @@
 import { createBrowserRouter } from "react-router-dom";
 import "./index.css";
 import loading from "/assets/loading.gif";
+import io from "socket.io-client";
 import { Suspense, lazy, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getAllProduct } from "./store/reducers/productSlice";
 import { RouterProvider } from "react-router";
+import { getOrders } from "./store/reducers/checkoutSlice";
 
+const Collections = lazy(() => import("./components/Collections/Collections"));
+const CheckOut = lazy(() => import("./components/Checkout/CheckOut"));
+const ProductDetails = lazy(() =>
+  import("./components/ProductDetails.jsx/ProductDetails")
+);
 const LoginPage = lazy(() => import("./components/HomePage/LoginPage"));
 const AllHotDeals = lazy(() => import("./components/All_Products/AllHotDeals"));
 const AllMostLoved = lazy(() =>
@@ -24,9 +31,35 @@ const ThankYou = lazy(() => import("./components/Order/ThankYou"));
 
 function App() {
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
-    dispatch(getAllProduct());
+     dispatch(getAllProduct());
+
+   const socket = io("http://localhost:3000");
+
+   socket.on("productAdded", () => {
+     dispatch(getAllProduct());
+   });
+
+   socket.on("productUpdated", () => {
+     dispatch(getAllProduct());
+   });
+
+   socket.on("productToggled", () => {
+     dispatch(getAllProduct());
+   });
+
+   socket.on("productDeleted", () => {
+     dispatch(getAllProduct());
+   });
+    
+    socket.on("updatedOrder", () => {
+      dispatch(getOrders());
+    });
+
+   return () => {
+     socket.disconnect(); // Clean up when component unmounts
+   };
   }, [dispatch]);
 
   const loadingPic = (
@@ -77,6 +110,14 @@ function App() {
       ),
     },
     {
+      path: "/Parakh_client/collections",
+      element: (
+        <Suspense fallback={loadingPic}>
+          <Collections />
+        </Suspense>
+      ),
+    },
+    {
       path: "/Parakh_client/cart",
       element: (
         <Suspense fallback={loadingPic}>
@@ -109,6 +150,14 @@ function App() {
       ),
     },
     {
+      path: "/Parakh_client/products-details",
+      element: (
+        <Suspense fallback={loadingPic}>
+          <ProductDetails />{" "}
+        </Suspense>
+      ),
+    },
+    {
       path: "/Parakh_client/rings",
       element: (
         <Suspense fallback={loadingPic}>
@@ -129,6 +178,14 @@ function App() {
       element: (
         <Suspense fallback={loadingPic}>
           <AllNecklace />
+        </Suspense>
+      ),
+    },
+    {
+      path: "/Parakh_client/checkout",
+      element: (
+        <Suspense fallback={loadingPic}>
+          <CheckOut />
         </Suspense>
       ),
     },

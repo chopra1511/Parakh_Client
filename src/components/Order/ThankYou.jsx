@@ -1,15 +1,16 @@
 import { IconButton } from "@mui/material";
-import React from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 
-
 const ThankYou = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+  const { cart } = useSelector((state) => state.cart)
+  console.log(cart);
   return (
     <>
       <div className="h-screen flex justify-center items-center bg-[#ffdde1]">
         <div className="absolute top-0 left-0 p-5">
-          <IconButton onClick={() => navigate("/Parakh_client/home")}>
+          <IconButton onClick={() => navigate("/Parakh_client/cart")}>
             <i className="fi fi-rr-arrow-left text-black pt-1 px-2"></i>
           </IconButton>
         </div>

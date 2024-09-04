@@ -9,7 +9,7 @@ const ShippingBadge = () => {
   return (
     <div>
       <Marquee>
-        <h1 className="text-sm text-center uppercase tracking-widest font-Poppins font-semibold p-2 ">
+        <h1 className="text-sm text-center uppercase tracking-widest font-Poppins font-semibold p-2 text-[#f2707f]">
           {longMessage}
         </h1>
       </Marquee>

@@ -1,4 +1,5 @@
 import NavBar from "../NavBar/NavBar";
+import "@flaticon/flaticon-uicons/css/all/all.css";
 import FooterNav from "../NavBar/FooterNav";
 import Footer from "../HomePage/Footer";
 import account from "/assets/account.png";
@@ -11,7 +12,12 @@ import AddressFormModal from "./AddressFormModal";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { getUser, userLogout } from "../../store/reducers/userSlice";
-import { getUserAddresses, removeUserAddress } from "../../store/reducers/addressSlice";
+import {
+  getUserAddresses,
+  removeUserAddress,
+} from "../../store/reducers/addressSlice";
+import Orders from "../Order/Orders";
+import { getOrders } from "../../store/reducers/checkoutSlice";
 
 const AccountPage = () => {
   const [showAllAddresses, setShowAllAddresses] = useState(false);
@@ -20,6 +26,8 @@ const AccountPage = () => {
 
   const { addresses } = useSelector((state) => state.address);
   const { user } = useSelector((state) => state.user);
+  const { allOrders } = useSelector((state) => state.order);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -34,21 +42,22 @@ const AccountPage = () => {
     if (!addresses || addresses.length === 0) {
       dispatch(getUserAddresses());
     }
-  }, [dispatch, user, addresses]);
+    dispatch(getOrders());
+  }, [dispatch, addresses]);
 
   const handleLogout = () => {
     dispatch(userLogout())
       .then(() => navigate("/Parakh_client/"))
       .catch((error) => console.log(error));
-    };
-    
-    const deleteAddressHandler = (id) => {
-        dispatch(removeUserAddress(id))
-          .then(() => {
-            dispatch(getUserAddresses());
-          })
-          .catch((error) => console.log(error));
-    }
+  };
+
+  const deleteAddressHandler = (id) => {
+    dispatch(removeUserAddress(id))
+      .then(() => {
+        dispatch(getUserAddresses());
+      })
+      .catch((error) => console.log(error));
+  };
 
   const handleSelectAddress = (index) => {
     setSelectedAddressIndex(index);
@@ -77,10 +86,10 @@ const AccountPage = () => {
           <div className="flex items-center relative px-5 mt-16 py-10 lg:px-20 lg:pt-20 overflow-hidden z-0">
             <div className="w-full flex justify-center items-center text-center">
               <div className="z-10 relative py-10 lg:pt-20 px-10 lg:px-20">
-                <h1 className="text-2xl md:text-3xl font-Cursive font-bold text-[#f2707f]">
+                <h1 className="text-xl md:text-2xl font-Pacifico text-[#f2707f]">
                   My
                 </h1>
-                <h1 className="text-4xl md:text-5xl font-Poppins font-semibold">
+                <h1 className="text-3xl md:text-4xl font-Lemon font-semibold">
                   Account
                 </h1>
               </div>
@@ -231,12 +240,18 @@ const AccountPage = () => {
                 </div>
 
                 <div>
-                  <div className="py-3">
-                    <h1 className="text-sm md:text-base font-Poppins font-medium text-[#f2707f]">
-                      <span className="underline">Make your first order.</span>{" "}
-                      You haven't placed any orders yet.
-                    </h1>
-                  </div>
+                  {allOrders.length === 0 ? (
+                    <div className="py-3">
+                      <h1 className="text-sm md:text-base font-Poppins font-medium text-[#f2707f]">
+                        <span className="underline">
+                          Make your first order.
+                        </span>{" "}
+                        You haven't placed any orders yet.
+                      </h1>
+                    </div>
+                  ) : (
+                    <Orders />
+                  )}
                 </div>
               </div>
             </div>
@@ -272,7 +287,7 @@ const AccountPage = () => {
         </div>
 
         <Footer />
-        <div className="fixed bottom-0 right-0 left-0 lg:hidden">
+        <div className="fixed bottom-0 right-0 left-0 xl:hidden">
           <FooterNav />
         </div>
       </div>

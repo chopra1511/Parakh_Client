@@ -99,7 +99,7 @@ const userSlice = createSlice({
   name: "user",
   initialState: {
     user: null,
-    isAuth: false,
+    isLoggedIn: false,
     isLoading: false,
     isError: false,
     errorMessage: null,
@@ -115,7 +115,7 @@ const userSlice = createSlice({
       .addCase(registerUser.fulfilled, (state, action) => {
         state.isLoading = false;
         state.user = action.payload;
-        state.isAuth = true;
+        state.isLoggedIn = action.payload.isLoggedIn;
         state.isError = false;
         state.errorMessage = null;
       })
@@ -134,7 +134,7 @@ const userSlice = createSlice({
       .addCase(userLogin.fulfilled, (state, action) => {
         state.isLoading = false;
         state.user = action.payload;
-        state.isAuth = true;
+        state.isLoggedIn = action.payload.isLoggedIn;
       })
       .addCase(userLogin.rejected, (state, action) => {
         state.isLoading = false;
@@ -145,7 +145,7 @@ const userSlice = createSlice({
       //logoutUser
       .addCase(userLogout.fulfilled, (state) => {
         state.user = null;
-        state.isAuth = false;
+        state.isLoggedIn = false;
       })
 
       //getUser
@@ -157,6 +157,7 @@ const userSlice = createSlice({
       .addCase(getUser.fulfilled, (state, action) => {
         state.isLoading = false;
         state.user = action.payload;
+        state.isLoggedIn = action.payload.isLoggedIn;
         state.isError = false;
         state.errorMessage = null;
       })

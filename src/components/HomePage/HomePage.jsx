@@ -14,36 +14,32 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "../../store/reducers/userSlice";
 import { getUserAddresses } from "../../store/reducers/addressSlice";
 import { getUserCart } from "../../store/reducers/cartSlice";
+import FreeDelivery from "./FreeDelivery";
+import { getUserWishlist } from "../../store/reducers/productSlice";
+
+
 
 const HomePage = () => {
   const dispatch = useDispatch();
 
-  const user = useSelector((state) => state.user.user);
-  const addresses = useSelector((state) => state.address.addresses);
-  const cart = useSelector((state) => state.cart.items);
-
+  const {user} = useSelector((state) => state.user);
+ 
   useEffect(() => {
     window.scrollTo(0, 0);
     if (!user) {
       dispatch(getUser());
     }
-    if (!addresses || addresses.length === 0) {
-      dispatch(getUserAddresses());
-    }
-    if (!cart || cart.length === 0) {
-      dispatch(getUserCart());
-    }
-  }, [dispatch, user, addresses, cart]);
+  }, [dispatch]);
 
 
   return (
     <>
-      <div className="home bg-[#f4f4f4]">
+      <div className="home">
         <div className="fixed top-0 right-0 left-0 z-10">
           <NavBar />
         </div>
 
-        <div className="h-screen bg-[url('/assets/bg2.jpg')] lg:bg-[url('/assets/bg.jpg')] bg-cover px-5">
+        <div className="h-screen bg-[url('/assets/bg2.jpg')] xl:bg-[url('/assets/bg.jpg')] bg-cover px-5">
           <div className="h-full flex flex-col justify-center items-center text-white animate-wiggle">
             <h1 className="text-8xl lg:text-9xl font-musky">Parakh</h1>
             <h1 className="text-xl lg:text-2xl font-Poppins font-light tracking-widest">
@@ -52,11 +48,11 @@ const HomePage = () => {
           </div>
         </div>
 
-        <div>
+        <div className="my-10">
           <CategorySlider />
         </div>
 
-        <div className="text-center px-5 lg:px-20">
+        <div className="text-center px-5 my-10 xl:px-10">
           <p className="py-5 lg:py-10 text-sm lg:text-lg font-Quicksand border-y-2 font-semibold">
             Parakh - Let's find the best #Fashion #Accessories on #Parakh
             @_parakh._
@@ -70,11 +66,12 @@ const HomePage = () => {
           <DreamCollection />
           <InfoSection />
           <CustomerReview />
+          {/* <FreeDelivery /> */}
           <Questions />
           <Footer />
         </div>
 
-        <div className="fixed bottom-0 right-0 left-0 lg:hidden drop-shadow-[0_30px_30px_rgba(0,0,0,0.25)]">
+        <div className="fixed bottom-0 right-0 left-0 xl:hidden drop-shadow-[0_30px_30px_rgba(0,0,0,0.25)]">
           <FooterNav />
         </div>
       </div>

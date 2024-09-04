@@ -62,13 +62,13 @@ const CustomerReview = () => {
   };
 
   return (
-    <div className="mx-5 my-10 py-10 px-5 lg:px-40 lg:py-20 lg:m-10 rounded-3xl bg-gradient-to-b from-[#ffdde1] to-[#ee9ca7]">
-      <div className="">
+    <div className="mx-5 my-40 py-10 px-5 lg:p-10 lg:mx-20 xl:px-40 xl:py-20 xl:mx-20 rounded-3xl bg-gradient-to-b from-[#ffdde1] to-[#ee9ca7]">
+      <div className="CustomerReviews">
         <div className="flex flex-col justify-center items-center">
-          <h1 className="text-2xl font-Cursive font-bold text-[#f2707f]">
+          <h1 className="text-xl font-Pacifico text-[#f2707f]">
             Absolute Satisfaction
           </h1>
-          <h1 className="mt-2 text-2xl lg:text-3xl font-Poppins font-semibold">
+          <h1 className="mt-2 text-2xl lg:text-3xl text-white drop-shadow font-Lemon font-semibold">
             Customer Reviews
           </h1>
         </div>

@@ -25,6 +25,18 @@ body {
     url("/assets/fonts/Musky.otf") format("opentype");
 }
 
+@font-face {
+  font-family: "Cheque";
+  src: local("Cheque-Regular"),
+    url("/assets/fonts/Cheque-Regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "LEMONMILK-Bold";
+  src: local("LEMONMILK-Bold"),
+    url("/assets/fonts/LEMONMILK-Bold.otf") format("opentype");
+}
+
 
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {

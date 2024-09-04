@@ -5,10 +5,13 @@ const base_URL = "https://parakh-api.onrender.com";
 
 export const createOrder = createAsyncThunk(
   "order/createOrder",
-  async (_, { rejectWithValue }) => {
+  async (orderDetails, { rejectWithValue }) => {
     try {
       const response = await fetch(`${base_URL}/cart-checkout`, {
-        method: "GET",
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ orderDetails }),
+        credentials: "include",
       });
       const result = await response.json();
       return result;
@@ -36,11 +39,31 @@ export const paymentVerify = createAsyncThunk(
   }
 );
 
+export const getOrders = createAsyncThunk(
+  "orders/getOrders",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await fetch(`${base_URL}/get-orders`, {
+        method: "GET",
+      });
+      const data = await response.json();
+      if (response.ok) {
+        return data.data;
+      } else {
+        return rejectWithValue(data.message);
+      }
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 const checkoutSlice = createSlice({
   name: "order",
   initialState: {
     order: [],
     orderStatus: [],
+    allOrders: []
   },
   extraReducers: (builder) => {
     builder
@@ -49,6 +72,9 @@ const checkoutSlice = createSlice({
       })
       .addCase(paymentVerify.fulfilled, (state, action) => {
         state.orderStatus = action.payload;
+      })
+      .addCase(getOrders.fulfilled, (state, action) => {
+        state.allOrders = action.payload;
       });
   },
 });

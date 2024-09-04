@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import diamond from "/assets/diamond.png";
 import heart from "/assets/heart.png";
 import "@flaticon/flaticon-uicons/css/all/all.css";
 import ProductsDisplay from "./ProductsDisplay";
@@ -16,7 +15,7 @@ const AllMostLoved = () => {
       categoryType="Customer's choice"
       category="Most Loved"
       emoteImg={heart}
-      products={items} 
+      products={items}
     />
   );
 };

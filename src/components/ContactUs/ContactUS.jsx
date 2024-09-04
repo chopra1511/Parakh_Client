@@ -1,9 +1,11 @@
 import NavBar from "../NavBar/NavBar";
 import FooterNav from "../NavBar/FooterNav";
 import Footer from "../HomePage/Footer";
-import telephone from "/assets/telephone.png";
+// import telephone from "/assets/telephone.png";
 import Button from "@mui/material/Button";
 import Checkbox from "@mui/material/Checkbox";
+import support from "/assets/support.gif";
+
 import { useEffect } from "react";
 // import ButtonStyle from "../ButtonStyle";
 
@@ -22,10 +24,10 @@ const ContactUS = () => {
           <div className="flex items-center relative px-5 mt-14 py-10 lg:px-20 lg:pt-20 overflow-hidden z-0">
             <div className="w-full flex justify-center items-center text-center">
               <div className="z-10 relative py-10 lg:pt-20 px-10 lg:px-20">
-                <h1 className="text-2xl md:text-3xl font-Cursive font-bold text-[#f2707f]">
+                <h1 className="text-xl md:text-2xl font-Pacifico text-[#f2707f]">
                   Get in touch
                 </h1>
-                <h1 className="text-4xl md:text-5xl font-Poppins font-semibold">
+                <h1 className="text-3xl md:text-4xl font-Lemon font-semibold">
                   Contact Us
                 </h1>
               </div>
@@ -33,7 +35,7 @@ const ContactUS = () => {
                 <div className="p-10 lg:p-20 rounded-full bg-white/40">
                   <div className="p-10 lg:p-20 rounded-full bg-white">
                     <img
-                      src={telephone}
+                      src={support}
                       alt="Emote"
                       className="w-24 lg:w-56 opacity-50"
                     />
@@ -64,10 +66,10 @@ const ContactUS = () => {
               <div className="flex items-center relative px-5 py-10 lg:px-20 lg:pt-10 z-0">
                 <div className="w-full flex justify-center items-center text-center">
                   <div className="z-10 relative py-5 lg:pt-10 px-10 lg:px-20">
-                    <h1 className="text-2xl md:text-3xl font-Cursive font-bold text-[#f2707f]">
+                    <h1 className="text-xl md:text-2xl font-Pacifico text-[#f2707f]">
                       Tell us what
                     </h1>
-                    <h1 className="text-4xl md:text-5xl font-Poppins font-semibold">
+                    <h1 className="text-3xl md:text-4xl font-Lemon font-semibold">
                       You Think!
                     </h1>
                   </div>
@@ -158,7 +160,7 @@ const ContactUS = () => {
         </div>
 
         <Footer />
-        <div className="fixed bottom-0 right-0 left-0 lg:hidden">
+        <div className="fixed bottom-0 right-0 left-0 xl:hidden">
           <FooterNav />
         </div>
       </div>

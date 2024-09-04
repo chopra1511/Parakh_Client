@@ -6,13 +6,13 @@ import CircleRoundedIcon from "@mui/icons-material/CircleRounded";
 
 const DreamCollection = () => {
   return (
-    <div className="mx-5 my-5 px-5 py-10 lg:px-40 lg:py-20 lg:m-10 rounded-3xl bg-gradient-to-b from-[#ffdde1] to-[#ee9ca7]">
-      <div className="flex flex-col-reverse lg:flex-row justify-between item-center gap-10">
-        <div className="lg:w-2/3 lg:p-5 flex flex-col lg:flex-start justify-center items-start">
-          <h1 className="text-2xl font-Cursive font-bold text-[#f2707f]">
+    <div className="mx-5 my-40 px-5 py-10 lg:mx-20 xl:px-40 xl:py-20 xl:mx-20 rounded-3xl bg-gradient-to-b from-[#ffdde1] to-[#ee9ca7] drop-shadow-xl">
+      <div className="flex flex-col-reverse sm:flex-row justify-between item-center gap-10">
+        <div className="sm:w-2/3 sm:p-5 flex flex-col sm:flex-start justify-center items-start">
+          <h1 className="text-2xl font-Pacifico text-[#f2707f]">
             Unique Collection
           </h1>
-          <h1 className="mt-2 text-3xl font-Poppins font-semibold">
+          <h1 className="mt-2 text-2xl text-white drop-shadow font-Lemon font-semibold">
             Dreamy Collection
           </h1>
           <h1 className="mt-1 text-sm font-Quicksand font-bold">
@@ -27,7 +27,7 @@ const DreamCollection = () => {
             Shop Now
           </button>
         </div>
-        <div className="w-full md:w-[500px] ">
+        <div className="w-full md:w-[500px]">
           <Carousel
             useKeyboardArrows={true}
             showThumbs={false}
