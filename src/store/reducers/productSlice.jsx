@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 // import products from "../../products";
 
-const base_URL = "https://parakh-api.onrender.com";
-// const base_URL = "http://localhost:8080";
+// const base_URL = "https://parakh-api.onrender.com";
+const base_URL = "http://localhost:8080";
 
 export const getAllProduct = createAsyncThunk(
   "get-all-products",
@@ -10,7 +10,7 @@ export const getAllProduct = createAsyncThunk(
     try {
       const response = await fetch(`${base_URL}/get-products`, {
         method: "GET",
-        credentials: "include",
+        // credentials: "include",
       });
       const data = await response.json();
       if (response.ok) {
@@ -32,7 +32,7 @@ export const getProductDetails = createAsyncThunk(
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ productId }),
-        credentials: "include",
+        // credentials: "include",
       });
 
       const data = await response.json();

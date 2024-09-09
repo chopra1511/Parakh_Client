@@ -10,14 +10,14 @@ import { userLogin } from "../../store/reducers/userSlice";
 const Login = () => {
   const [register, setRegister] = useState(false);
 
-   const dispatch = useDispatch();
-   const { isLoading, isError, errorMessage } = useSelector(
-     (state) => state.user
+  const dispatch = useDispatch();
+  const { isLoading, isError, errorMessage } = useSelector(
+    (state) => state.user
   );
-  
-   const emailRef = useRef("");
+
+  const emailRef = useRef("");
   const passwordRef = useRef("");
-  
+
   const submithandler = (e) => {
     e.preventDefault();
     const userdetails = {
@@ -31,7 +31,6 @@ const Login = () => {
       .catch((error) => console.log(error));
   };
 
-
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
@@ -43,7 +42,7 @@ const Login = () => {
         <div className="h-full flex justify-center items-center py-32 px-5 md:px-40">
           <div className="flex flex-col items-center text-center p-10">
             <div>
-              <h1 className="text-2xl md:text-4xl font-Cursive font-bold text-[#f2707f]">
+              <h1 className="text-2xl md:text-3xl font-Pacifico text-[#f2707f]">
                 Login
               </h1>
               <h1 className="text-xl md:text-4xl font-Poppins font-semibold">
@@ -54,7 +53,7 @@ const Login = () => {
             <div className="mt-10">
               <form onSubmit={submithandler}>
                 <div className="flex flex-col gap-10 items-center">
-                  <div className="md:w-96 relative">
+                  <div className="w-full relative">
                     <input
                       type="email"
                       placeholder="Your Email*"
@@ -65,7 +64,7 @@ const Login = () => {
                       Email ID
                     </h1>
                   </div>
-                  <div className="md:w-96 relative">
+                  <div className="w-full relative">
                     <input
                       type="password"
                       placeholder="Your Password*"
@@ -80,6 +79,11 @@ const Login = () => {
                 <h1 className="w-fit text-[12px] md:text-sm mt-2 font-Poppins font-medium text-[#f2707f] cursor-pointer hover:underline">
                   Forgot Your Password?
                 </h1>
+                {isError && (
+                  <h1 className="mt-5 text-sm md:text-base font-Poppins font-medium text-red-600">
+                    {`${errorMessage}`}
+                  </h1>
+                )}
                 <div className="mt-5">
                   <Button
                     variant="contained"
@@ -104,22 +108,17 @@ const Login = () => {
                   </Button>
                 </div>
               </form>
-              {isError && (
-                <h1 className="mt-5 text-sm md:text-base font-Poppins font-semibold text-red-600">
-                  {`${errorMessage}`}
-                </h1>
-              )}
-              <div className="mt-5 flex flex-col items-center">
-                <h1 className="w-fit pb-2 text-sm md:text-base font-Poppins font-semibold text-black">
-                  Don't have an accounr?
-                </h1>
-                <h1
-                  onClick={() => {
-                    setRegister(true);
-                  }}
-                  className=" w-fit text-sm md:text-base font-Poppins font-semibold text-[#f2707f] hover:text-[#F7475C] hover:underline cursor-pointer"
-                >
-                  Create Account
+              <div className="mt-5">
+                <h1 className="pb-2 text-sm md:text-base font-Poppins font-semibold text-black">
+                  Don't have an account?{" "}
+                  <span
+                    onClick={() => {
+                      setRegister(true);
+                    }}
+                    className="text-sm md:text-base font-Poppins font-semibold text-[#f2707f] hover:text-[#F7475C] hover:underline cursor-pointer"
+                  >
+                    Create Account
+                  </span>
                 </h1>
               </div>
             </div>

@@ -25,7 +25,6 @@ const Cart = () => {
     }
   }, [dispatch, cart]);
 
-  console.log(cart);
 
   const wishlistHandler = (id) => {
     console.log(id);

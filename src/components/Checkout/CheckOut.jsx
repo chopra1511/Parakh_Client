@@ -92,7 +92,10 @@ const CheckOut = () => {
   const deleteItemHandler = (id) => {
     dispatch(deleteCartItem(id))
       .then(() => {
-        dispatch(getUserCart());
+        if (cart.length) {
+          dispatch(getUserCart());
+        }
+        navigate("/Parakh_client/cart");
       })
       .catch((err) => {
         console.log(err);

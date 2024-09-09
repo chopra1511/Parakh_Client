@@ -40,7 +40,7 @@ const Register = ({ setRegister }) => {
     <div className="h-full flex justify-center items-center py-32 px-5 md:px-40">
       <div className="flex flex-col items-center text-center p-10">
         <div>
-          <h1 className="text-2xl md:text-3xl font-Cursive font-bold text-[#f2707f]">
+          <h1 className="text-2xl md:text-3xl font-Pacifico text-[#f2707f]">
             Register
           </h1>
           <h1 className="text-xl md:text-4xl font-Poppins font-semibold">
@@ -98,6 +98,11 @@ const Register = ({ setRegister }) => {
                 </h1>
               </div>
             </div>
+            {isError && (
+              <h1 className="mt-5 text-sm md:text-base font-Poppins font-medium text-red-600">
+                {`${errorMessage}`}
+              </h1>
+            )}
             <div className="mt-10">
               <Button
                 variant="contained"
@@ -122,11 +127,7 @@ const Register = ({ setRegister }) => {
               </Button>
             </div>
           </form>
-          {isError && (
-            <h1 className="mt-5 text-sm md:text-base font-Poppins font-semibold text-red-600">
-              {`${errorMessage}`}
-            </h1>
-          )}
+
           <h1 className="mt-5 text-sm md:text-base font-Poppins font-semibold text-black">
             Have an account?{" "}
             <span

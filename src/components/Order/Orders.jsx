@@ -13,7 +13,7 @@ const Orders = () => {
   }, []);
 
   const { allOrders } = useSelector((state) => state.order);
-  console.log(allOrders);
+  // console.log(allOrders);
 
   const sortedOrders = [...allOrders].sort((a, b) => {
     return (

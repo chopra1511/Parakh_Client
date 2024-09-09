@@ -10,12 +10,13 @@ import {
   getUserCart,
   increaseCartItem,
 } from "../../store/reducers/cartSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 
 const YourCart = ({ cart, billDetails }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.user);
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -67,11 +68,7 @@ const YourCart = ({ cart, billDetails }) => {
               <div key={index} className="flex gap-5 py-5">
                 <div className="p-2 bg-white w-28 md:w-28 drop-shadow">
                   <div className="w-18 h-16 md:h-20  flex justify-center items-center bg-gray-100 overflow-hidden">
-                    <img
-                      src={item.product.images}
-                      alt=""
-                      className="w-full"
-                    />
+                    <img src={item.product.images} alt="" className="w-full" />
                   </div>
                 </div>
                 <div className="w-full">
@@ -196,7 +193,13 @@ const YourCart = ({ cart, billDetails }) => {
           variant="contained"
           size="large"
           type="submit"
-          onClick={() => navigate("/Parakh_client/checkout")}
+          onClick={() => {
+            if (user) {
+              navigate("/Parakh_client/checkout");
+            } else {
+              navigate("/Parakh_client/loginpage");
+            }
+          }}
           className="button-shiny-effect"
           sx={{
             borderRadius: isMobile ? "5px" : "10px",

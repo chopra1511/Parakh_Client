@@ -116,8 +116,8 @@ select:-webkit-autofill:focus {
 
 
 span.MuiBadge-badge.MuiBadge-standard.MuiBadge-anchorOriginTopRight.MuiBadge-anchorOriginTopRightRectangular.MuiBadge-overlapRectangular.css-dlwkee-MuiBadge-badge {
-    background-color: #f2707f;
-    color: white;
+    background-color: #f2707f !important;
+    color: white !important;
 }
 
 input[type="radio"]:checked {

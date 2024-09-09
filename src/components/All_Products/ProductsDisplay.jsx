@@ -12,6 +12,7 @@ import {
   getUserWishlist,
   removeFromWishlist,
 } from "../../store/reducers/productSlice";
+// import { getUserCart } from "../../store/reducers/cartSlice";
 
 const ProductsDisplay = ({ categoryType, category, emoteImg, products }) => {
   const dispatch = useDispatch();
@@ -39,7 +40,7 @@ const ProductsDisplay = ({ categoryType, category, emoteImg, products }) => {
     console.log(id);
     const product = products.find((product) => product._id === id);
     if (product) {
-      dispatch(addToCart({product: product}))
+      dispatch(addToCart({ product: product }))
         .then(() => {
           dispatch(getUserCart());
         })
@@ -50,9 +51,7 @@ const ProductsDisplay = ({ categoryType, category, emoteImg, products }) => {
   };
 
   const wishlistHandler = (id) => {
-    const isProductInWishlist = wishlist.some(
-      (item) => item._id === id
-    );
+    const isProductInWishlist = wishlist.some((item) => item._id === id);
     if (isProductInWishlist) {
       dispatch(removeFromWishlist(id))
         .then(() => {

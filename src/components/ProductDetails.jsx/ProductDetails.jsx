@@ -22,6 +22,7 @@ const ProductDetails = () => {
   const { productDetails, products, wishlist } = useSelector(
     (state) => state.products
   );
+  console.log(productDetails);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -91,7 +92,7 @@ const ProductDetails = () => {
             <div className="xl:w-1/2 flex md:justify-center xl:items-center">
               <div className="my-5 lg:my-0 relative w-full h-96 lg:h-[585px] overflow-hidden rounded-xl">
                 <img
-                  src={productDetails.images[0].url}
+                  src={productDetails.images}
                   alt=""
                   className="w-full rounded-xl absolute -top-24 lg:-top-44"
                 />

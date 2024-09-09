@@ -22,7 +22,7 @@ const Wishlist = () => {
     if (!wishlist || wishlist.length === 0) {
       dispatch(getUserWishlist());
     }
-  }, [dispatch]);
+  }, []);
 
   const addCartHandler = (id) => {
     const product = wishlist.find((product) => product.product._id === id);
@@ -124,7 +124,7 @@ const Wishlist = () => {
                 <div className="px-4 pt-4 shadow-inner">
                   <div className="relative w-full flex flex-col justify-center items-center h-32 md:h-48 lg:h-60 xl:h-72 bg-gray-100 overflow-hidden group">
                     <img
-                      src={product.product.images[0].url}
+                      src={product.product.images}
                       alt=""
                       className="w-full object-cover transition ease-in-out duration-700 group-hover:scale-110 md:group-hover:scale-150 mix-blend-darken"
                     />
