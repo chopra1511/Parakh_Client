@@ -33,33 +33,34 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-     dispatch(getAllProduct());
+    dispatch(getAllProduct());
 
-   const socket = io("http://localhost:3000");
+    // const socket = io("https://parakhadmin-server.onrender.com");
+    const socket = io("http://localhost:3000");
 
-   socket.on("productAdded", () => {
-     dispatch(getAllProduct());
-   });
+    socket.on("productAdded", () => {
+      dispatch(getAllProduct());
+    });
 
-   socket.on("productUpdated", () => {
-     dispatch(getAllProduct());
-   });
+    socket.on("productUpdated", () => {
+      dispatch(getAllProduct());
+    });
 
-   socket.on("productToggled", () => {
-     dispatch(getAllProduct());
-   });
+    socket.on("productToggled", () => {
+      dispatch(getAllProduct());
+    });
 
-   socket.on("productDeleted", () => {
-     dispatch(getAllProduct());
-   });
-    
+    socket.on("productDeleted", () => {
+      dispatch(getAllProduct());
+    });
+
     socket.on("updatedOrder", () => {
       dispatch(getOrders());
     });
 
-   return () => {
-     socket.disconnect(); // Clean up when component unmounts
-   };
+    return () => {
+      socket.disconnect(); // Clean up when component unmounts
+    };
   }, [dispatch]);
 
   const loadingPic = (
