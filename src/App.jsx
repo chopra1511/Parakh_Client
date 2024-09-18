@@ -35,8 +35,8 @@ function App() {
   useEffect(() => {
     dispatch(getAllProduct());
 
-    // const socket = io("https://parakhadmin-server.onrender.com");
-    const socket = io("http://localhost:3000");
+    const socket = io("https://parakhadmin-server.onrender.com");
+    // const socket = io("http://localhost:3000");
 
     socket.on("productAdded", () => {
       dispatch(getAllProduct());
